@@ -1,0 +1,2 @@
+s="HELPS HEALS WITHOUT HURTING"
+print("The number of occurrence of h is",s.count('H'))
