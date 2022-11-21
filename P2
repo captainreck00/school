@@ -1,0 +1,13 @@
+a=input("Enter a string ")
+x=['a','e','i','o','u']
+b=a.lower()
+v=0
+c=0
+for i in b:
+  if i.isalpha():
+     if i in x:
+        v+=1
+     else:
+       c+=1
+print("The number of vowels in string are",v)
+print("The number of consonants in string are",c)
