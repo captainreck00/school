@@ -1,0 +1,7 @@
+a=input("Entere a string ")
+b=""
+x=["A","I","E","I","O","U","a","e","i","o","u"]
+for i in a:
+    if i not in x:
+        b=b+i
+print(b)        
