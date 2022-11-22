@@ -1,0 +1,7 @@
+a=input("Enter a string ")
+punc='''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+b=""
+for i in a:
+    if i not in punc:
+        b=b+i
+print(b)   
