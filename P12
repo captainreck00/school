@@ -1,0 +1,9 @@
+a=input("Enter your email id ")
+if len (a)>11:
+    if "@google.com" not in a[−11:]
+        print("Enter the correct domain")
+else:
+    print("Enter correct email id")
+         
+    
+
