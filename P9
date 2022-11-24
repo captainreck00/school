@@ -1,0 +1,5 @@
+a=input("Enter a string")
+a=a.strip()
+b=1
+b=b+a.count(" ")
+print("no.of words are",b)
