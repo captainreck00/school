@@ -29,7 +29,7 @@ def Loc():
 def board():
     x=[[0,0,0,0,0]]
     for i in range(4):
-       x.append([0,0,0,0,0])
+        x.append([0,0,0,0,0])
     return x
 
 def board_print():
@@ -43,13 +43,19 @@ def Input():
 
 N=Loc()
 
-def X(m):
+
+def X(m,P):
     while(end==False and m<5):
-        if Input()==N:
+        board_print()
+        x=board()
+        if P==N:
             print("Ship sunken")
-            m+=1
+            x[ord(P[0])-65][1]="-"
+            break
         else:
-            print("Missed") 
+            x[ord(P[0])-65][1]="-"
+            print("Missed")
+        m+=1     
     else:
         print("You lost")
     return m    
@@ -60,6 +66,7 @@ def Game(n):
     if x=="X":
         Rules()
         board_print()
-        n=X(n)
+        I=Input()
+        n=X(n,I)
 
-Game(c)    
+Game(c)  
