@@ -1,0 +1,17 @@
+X=[]
+
+def Input(M):
+    print("Enter 0 when you want to exit")
+    x=int(input("Enter a number "))
+    while(x!=0):
+        M.append(x)
+        x=int(input("Enter a number "))
+
+def Interchange(N):
+    for i in range(0,len(N)-1,2):
+        N[i],N[i+1]=N[i+1],N[i]
+    
+Input(X)
+Interchange(X)
+
+print(X)
