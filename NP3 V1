@@ -1,0 +1,23 @@
+print("Enter 0 when you want to exit")
+
+X=[]
+
+def Input(M):
+    x=int(input("Enter a number ")) 
+    while(x!=0):
+        M.append(x)
+        x=int(input("Enter a number "))
+
+def Largest(N):
+    l=max(N)
+    N.remove(l)
+    return l
+
+def Sec_Largest(O):
+    l=max(O)
+    return l
+
+Input(X)
+print("List is",X)
+print("Largest number is",Largest(X))
+print("Secong Largest number is",Sec_Largest(X))                
