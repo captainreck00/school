@@ -1,0 +1,26 @@
+X=[]
+
+def Input(M):
+    print("Enter 0 when you want to exit")
+    x=int(input("Enter a number "))
+    while(x!=0):
+        M.append(x)
+        x=int(input("Enter a number "))
+
+def Des_Sort(N):
+    for i in range(len(N)):
+        for j in range(len(N)):
+            if N[i]>N[j]:
+                N[j],N[i]=N[i],N[j]
+    return N            
+
+def Asc_Sort(N):
+    N.reverse()
+    return N
+
+
+Input(X)
+print("List in descending order ",Des_Sort(X))
+print("List in ascending order ",Asc_Sort(X))
+
+          
