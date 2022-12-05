@@ -1,0 +1,21 @@
+print("Enter 0 when you want to exit")
+
+X=[]
+
+def Input(M):
+    x=int(input("Enter a number ")) 
+    while(x!=0):
+        M.append(x)
+        x=int(input("Enter a number "))
+
+def Delete_Even(N):
+    for i in N:
+        if i%2==0:
+            N.remove(i)
+    return N        
+            
+
+Input(X)
+print(X)
+X=Delete_Even(X)
+print("The list without Even numbers",X)
