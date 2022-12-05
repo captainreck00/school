@@ -1,0 +1,26 @@
+X=[]
+
+def Input(M):
+    print("Enter 0 when you want to exit")
+    x=int(input("Enter a number "))
+    while(x!=0):
+        M.append(x)
+        x=int(input("Enter a number "))
+    M.sort()    
+
+def Search(N):
+    Num_Search=int(input("Enter the number to be searched "))
+    c=0; flag=False
+    Index=[]
+    for i in range(len(N)):
+        if Num_Search==N[i]:
+            c+=1
+            Index.append(i)
+            flag=True      
+    if flag:
+        print("Number",Num_Search,"found at index",str(Index)[1:-1]) 
+    else:
+        print("Number not found")        
+             
+Input(X)
+Search(X)
