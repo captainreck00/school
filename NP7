@@ -1,0 +1,21 @@
+X=[]
+
+def Input(M):
+    print("Enter 0 when you want to exit")
+    x=input("Enter a number ")
+    while(x!="0"):
+        M.append(x)
+        x=input("Enter a number ")
+
+def Rev(N):
+    L=""
+    for i in range(len(N)-1,-1,-1):
+        L=L+" "+N[i]
+    return L[1:].split(" ")
+
+            
+ 
+Input(X)
+X=Rev(X)
+
+print(X)
