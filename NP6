@@ -9,7 +9,27 @@ def Input(M):
 
 def duplicate(N):
     No_Dup=[]
+    Dup=[]
     for i in N:
         if i not in No_Dup:
             No_Dup.append(i)
+    for j in No_Dup:
+        c=0
+        for k in range(len(N)):
+            if j==N[k]:
+                if c>1:
+                    N[k]="0"
+                c+=1
+
+Input(X)
+print(X)
+duplicate(X)
+print(X)                            
+
+
+
+                
             
+
+
+
