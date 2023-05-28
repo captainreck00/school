@@ -1,0 +1,32 @@
+def deci(on):
+    deci=0
+    k=0
+    while(on!=0):
+        rem=on%10
+        on=on//10
+        deci=rem*(8**k)+deci
+        k+=1
+    return deci
+
+        
+def bina(on):
+    d=deci(on)
+    bina=0
+    k=0
+    while(d!=0):
+        rem=d%2
+        d=d//2
+        bina=rem+bina*10
+        k+=1
+    print(bina)      
+
+bina(1122)
+
+
+        
+
+
+
+        
+
+
