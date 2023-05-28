@@ -1,27 +1,38 @@
 def deci(on):
-    deci=0
+    d=0
     k=0
     while(on!=0):
         rem=on%10
         on=on//10
-        deci=rem*(8**k)+deci
+        d=rem*(8**k)+d
         k+=1
-    return deci
+    return d
 
         
 def bina(on):
     d=deci(on)
-    bina=0
-    k=0
+    b=""
     while(d!=0):
         rem=d%2
         d=d//2
-        bina=rem+bina*10
-        k+=1
-    print(bina)      
+        b=str(rem)+b
+    print(b)      
 
-bina(1122)
-
+def hexa(x):
+    h=""
+    d=deci(x)
+    r={10:"A",11:"B",12:"C",13:"D",14:"E",15:"F"}
+    while(d!=0):
+        rem=d%16
+        d=d//16
+        if rem>9:
+            h=r[rem]+h
+        else:
+            h=str(rem)+h
+        print(h)     
+    print(h)    
+   
+  
 
         
 

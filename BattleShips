@@ -1,72 +1,95 @@
 from random import randint
 
-end=False
-guess=[]
-a=0
-r=0
-c=0
+def welcome():
+    print("\nWelcome to the Game of Battleships")
 
-def Welcome():
-    print("\n \nWelcome to the Game of Battleships")
-    start=input("Press X to start the game ")
-    return start
+def rules():
+    print('''\nRules:
+1. Each player places 5 ships somewhere on their board.
+2. Ships can be placed vertically or horizontally, but not diagonally.
+3. Ships cannot overlap each other or hang off the edge of the board.
+4. The 5 ships are: Carrier (occupies 5 spaces), Battleship (4), Cruiser (3), Submarine (3), and Destroyer (2).\n''')
 
-def Rules():
-    print('''\n \n1. Each player places the 5 ships somewhere on their board.  
-2.The ships can only be placed vertically or horizontally. 
-3.Diagonal placement is not allowed. 
-4.No part of a ship may hang off the edge of the board.  
-5.Ships may not overlap each other.  
-6.No ships may be placed on another ship. 
-7.Once the guessing begins, the players may not move the ships.
-8.The 5 ships are:  Carrier (occupies 5 spaces), Battleship (4), Cruiser (3), Submarine (3), and Destroyer (2).  \n\n''')
+def generate_board():
+    board = []
+    for _ in range(5):
+        row = ['O'] * 5
+        board.append(row)
+    return board
 
-def Loc():
-    r=str(randint(0,4))
-    a=chr(65+randint(0,4))
-    return a,r
+def print_board(board):
+    print()
+    print("   1 2 3 4 5")
+    print("  -----------")
+    for i, row in enumerate(board):
+        print(chr(65 + i), "|", " ".join(row))
+    print()
 
-def board():
-    x=[[0,0,0,0,0]]
-    for i in range(4):
-        x.append([0,0,0,0,0])
-    return x
+def place_ships(board):
+    ships = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
+    for ship, size in ships.items():
+        print_board(board)
+        while True:
+            print(f"Placing {ship} (size: {size})")
+            row = input("Enter row (A-E): ").upper()
+            column = int(input("Enter column (1-5): "))
+            orientation = input("Enter orientation (H for horizontal, V for vertical): ").upper()
+            
+            if orientation == 'H':
+                if column + size > 6:
+                    print("Invalid placement! Ship goes out of bounds.")
+                else:
+                    valid = True
+                    for c in range(column, column + size):
+                        if board[ord(row) - 65][c - 1] != 'O':
+                            valid = False
+                            print("Invalid placement! Ships overlap.")
+                            break
+                    if valid:
+                        for c in range(column, column + size):
+                            board[ord(row) - 65][c - 1] = ship[0]
+                        break
+            elif orientation == 'V':
+                if ord(row) + size > 70:
+                    print("Invalid placement! Ship goes out of bounds.")
+                else:
+                    valid = True
+                    for r in range(ord(row), ord(row) + size):
+                        if board[r - 65][column - 1] != 'O':
+                            valid = False
+                            print("Invalid placement! Ships overlap.")
+                            break
+                    if valid:
+                        for r in range(ord(row), ord(row) + size):
+                            board[r - 65][column - 1] = ship[0]
+                        break
+            else:
+                print("Invalid orientation! Enter 'H' for horizontal or 'V' for vertical.")
+            
 
-def board_print():
-    for i in range(0,5):
-        print((str(board()[i])[1:-1]).replace(',',"   "),"\n\n")
+def play_game():
+    board = generate_board()
+    place_ships(board)
+    turns = 0
 
-def Input():
-    Al=input("Enter Your Guess ")  
-    num=input("Enter Your Guess ")
-    return Al,num
-
-N=Loc()
-
-
-def X(m,P):
-    while(end==False and m<5):
-        board_print()
-        x=board()
-        if P==N:
-            print("Ship sunken")
-            x[ord(P[0])-65][1]="-"
-            break
+    while True:
+        print_board(board)
+        guess_row = input("Enter row (A-E) to guess: ").upper()
+        guess_column = int(input("Enter column (1-5) to guess: "))
+        
+        if board[ord(guess_row) - 65][guess_column - 1] != 'O':
+            print("Hit!")
+            board[ord(guess_row) - 65][guess_column - 1] = 'X'
         else:
-            x[ord(P[0])-65][1]="-"
-            print("Missed")
-        m+=1     
-    else:
-        print("You lost")
-    return m    
+            print("Miss!")
 
+        turns += 1
 
-def Game(n):
-    x=Welcome()
-    if x=="X":
-        Rules()
-        board_print()
-        I=Input()
-        n=X(n,I)
+        if all(all(cell != ship[0] for cell in row) for row in board for ship in ['Carrier', 'Battleship', 'Cruiser', 'Submarine', 'Destroyer']):
+            print("Congratulations! You sunk all the battleships!")
+            print(f"You took {turns} turns to complete the game.")
+            break
 
-Game(c)  
+welcome()
+rules()
+play_game()
