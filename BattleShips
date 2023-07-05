@@ -12,14 +12,14 @@ def rules():
 
 def generate_board():
     board = []
-    for _ in range(5):
-        row = ['O'] * 5
+    for _ in range(8):
+        row = ['O'] * 8
         board.append(row)
     return board
 
 def print_board(board):
     print()
-    print("   1 2 3 4 5")
+    print("   1 2 3 4 5 6 7 8")
     print("  -----------")
     for i, row in enumerate(board):
         print(chr(65 + i), "|", " ".join(row))
@@ -31,12 +31,12 @@ def place_ships(board):
         print_board(board)
         while True:
             print(f"Placing {ship} (size: {size})")
-            row = input("Enter row (A-E): ").upper()
-            column = int(input("Enter column (1-5): "))
+            row = input("Enter row (A-H): ").upper()
+            column = int(input("Enter column (1-8): "))
             orientation = input("Enter orientation (H for horizontal, V for vertical): ").upper()
             
             if orientation == 'H':
-                if column + size > 6:
+                if column + size > 9:
                     print("Invalid placement! Ship goes out of bounds.")
                 else:
                     valid = True
@@ -50,7 +50,7 @@ def place_ships(board):
                             board[ord(row) - 65][c - 1] = ship[0]
                         break
             elif orientation == 'V':
-                if ord(row) + size > 70:
+                if ord(row) + size >73 :
                     print("Invalid placement! Ship goes out of bounds.")
                 else:
                     valid = True
@@ -74,8 +74,8 @@ def play_game():
 
     while True:
         print_board(board)
-        guess_row = input("Enter row (A-E) to guess: ").upper()
-        guess_column = int(input("Enter column (1-5) to guess: "))
+        guess_row = input("Enter row (A-H) to guess: ").upper()
+        guess_column = int(input("Enter column (1-8) to guess: "))
         
         if board[ord(guess_row) - 65][guess_column - 1] != 'O':
             print("Hit!")
