@@ -82,6 +82,7 @@ def play_game():
             board[ord(guess_row) - 65][guess_column - 1] = 'X'
         else:
             print("Miss!")
+            board[ord(guess_row) - 65][guess_column - 1] = 'M'
 
         turns += 1
 
